@@ -1,6 +1,6 @@
 import caesar
 import util
-
+import columnar
 
 def main():
 
@@ -13,7 +13,7 @@ def main():
     if user_choice_s_t == 'S':
         while True:
             key = int(input('Input key (0-255): '))
-            if util.validate_key(key):
+            if caesar.validate_key(key):
                 break
 
         if user_choice_e_d == 'E':
@@ -25,7 +25,17 @@ def main():
             util.write_denc_file(filename, plaintext)
 
     elif user_choice_s_t == 'T':
-        pass
+        while True:
+            key = input('Input key :')
+            break
+
+        if user_choice_e_d == 'E':
+            ciphertext = columnar.encrypt(key, message)
+            util.write_enc_file(filename, ciphertext)
+
+        elif user_choice_e_d == 'D':
+            plaintext = columnar.decrypt(key, message)
+            util.write_denc_file(filename, plaintext)
 
 
 main()

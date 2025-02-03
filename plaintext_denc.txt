@@ -1,0 +1,24 @@
+***************************************************************************************************
+*                                                                                                 *
+*                                Secret message - Top Secret                                      *
+*                                                                                                 *
+*                      May only be read by security passed personnel                              *
+*                                                                                                 *
+***************************************************************************************************
+
+Write a Python (or Java) program, implementing encryption/decryption without using any
+special security packages. The program should ask the user for an encryption method, if you
+want to perform encryption or decryption, a secret key and a text file to process. The output
+should be a processed file. You should implement at least two simple encryption methods,
+one substitution and one transposition method. For the substitution method, keep key sizes at
+a maximum equivalent to eight bits, i.e. 28=256 different possible keys that correspond to one
+character.
+Make sure that you can both encrypt and decrypt files with your program.
+Make sure the program is well commented!
+In the report, you should describe how you approached the problem, how the solution was
+designed, and briefly explain your actual code implementation.      
+
+Max Porseryd
+      
+
+***************************************************************************************************
