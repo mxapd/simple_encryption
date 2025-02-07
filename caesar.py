@@ -19,11 +19,11 @@ def decrypt(key, ciphertext):
     plaintext = ''
 
     for char in ciphertext:
-        if char in (' ', '\n', '\t'):
+        if char in (' ', '\n', '\t', '\"', '\''):
             plaintext += char
             continue
 
-        plainchar = chr((ord(char) - key) % 256)
+        plainchar = chr((ord(char) - key) % 255)
 
         plaintext += plainchar
 

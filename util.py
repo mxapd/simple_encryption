@@ -29,7 +29,6 @@ def write_enc_file(filename, ciphertext):
             file.write(ciphertext)
             file.write('\n'+'*'*99)
 
-
     except FileNotFoundError:
         print(f'Error: File "{filename}" not found.')
 
@@ -51,7 +50,6 @@ def write_denc_file(filename, plaintext):
             file.write(header)
             file.write(plaintext)
             file.write('\n'+'*'*99)
-
 
     except FileNotFoundError:
         print(f'Error: File "{filename}" not found.')

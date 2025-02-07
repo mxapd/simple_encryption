@@ -9,7 +9,7 @@ def encrypt(key, plaintext):
 
     for i in range(len(content)):
         if len(content[i]) < keylen:
-            content[i] += '_' * (keylen - len(content[i]))
+            content[i] += 'Ɔ' * (keylen - len(content[i]))
 
     preorder = []
 
@@ -66,6 +66,6 @@ def decrypt(key, ciphertext):
             row_text += reordered[col][row]
         plaintext += row_text
 
-    plaintext = plaintext.replace('_', '')
+    plaintext = plaintext.replace('Ɔ', '')
 
     return plaintext
