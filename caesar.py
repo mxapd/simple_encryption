@@ -1,13 +1,19 @@
+import util
+
+
 def encrypt(key, plaintext):
-    if not validate_key(key):
+    # check if the key is valid
+    if not util.validate_caesar_key(key):
         return "Invalid key"
 
     ciphertext = ''
+    # encrypt each character in the plaintext, exluding special chars
     for char in plaintext:
-        if char in (' ', '\n', '\t'):
+        if char in (' ', '\n', '\t', '\'', '\"'):
             ciphertext += char
             continue
 
+        # shift each char by the key value
         new_char = chr((ord(char) + key) % 256)
 
         ciphertext += new_char
@@ -19,22 +25,13 @@ def decrypt(key, ciphertext):
     plaintext = ''
 
     for char in ciphertext:
-        if char in (' ', '\n', '\t', '\"', '\''):
+        if char in (' ', '\n', '\t', '\'', '\"'):
             plaintext += char
             continue
 
-        plainchar = chr((ord(char) - key) % 255)
+        plainchar = chr((ord(char) - key) % 256)
 
         plaintext += plainchar
 
     return plaintext
 
-
-def validate_key(key):
-    if isinstance(key, str) and len(key) == 1 and 0 <= ord(key) <= 255:
-        return True
-    elif isinstance(key, int) and 0 <= key < 256:
-        return True
-    else:
-        print('Invalid key. Must be a number (0-255) or a single character.')
-        return False

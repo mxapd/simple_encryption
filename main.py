@@ -2,35 +2,30 @@ import caesar
 import util
 import columnar
 
+# get the filename and load the contents of that file
 filename = input('Name of file to read from: ')
 message = util.load_content(filename)
 
-user_choice_e_d = input('Do you want to encrypt [E] or decrypt [D]?')
-user_choice_s_t = input('Do you want to use substitution [S] or transposition [T]?')
+# get user input for mode and what cipher to use
+mode = util.get_user_input('Do you want to encrypt [E] or decrypt [D]?', ('E', 'D'))
+cipher = util.get_user_input(
+    'Do you want to use substitution [S] or transposition [T]? ', ('S', 'T'))
 
-if user_choice_s_t == 'S':
-    while True:
-        key = int(input('Input key (0-255): '))
-        if caesar.validate_key(key):
-            break
+# if the chosen cipher is substitution get a valid key and encrypt or decrypt based on mode input
+if cipher == 'S':
+    key = util.get_valid_caesar_key()
+    result = caesar.encrypt(key, message) if mode == 'E' else caesar.decrypt(key, message)
+else:
+    key = input('Enter key: ')
+    result = columnar.encrypt(key, message) if mode == 'E' else columnar.decrypt(key, message)
 
-    if user_choice_e_d == 'E':
-        ciphertext = caesar.encrypt(key, message)
-        util.write_enc_file(filename, ciphertext)
 
-    elif user_choice_e_d == 'D':
-        plaintext = caesar.decrypt(key, message)
-        util.write_denc_file(filename, plaintext)
+new_filename = filename
 
-elif user_choice_s_t == 'T':
-    while True:
-        key = input('Input key :')
-        break
+# then write to file
+if mode == 'E':
+    new_filename = util.write_enc_file(filename, result)
+else:
+    new_filename = util.write_denc_file(filename, result)
 
-    if user_choice_e_d == 'E':
-        ciphertext = columnar.encrypt(key, message)
-        util.write_enc_file(filename, ciphertext)
-
-    elif user_choice_e_d == 'D':
-        plaintext = columnar.decrypt(key, message)
-        util.write_denc_file(filename, plaintext)
+print(f'The file {new_filename} was written successfully')
